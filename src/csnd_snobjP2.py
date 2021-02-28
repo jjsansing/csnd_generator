@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 #
 # \file csnd_snobjP2.py
 # CSound Scale Notes Generator header

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 #
 # /file csnd_genP2.py
 # CSound Score Generator Program

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 #
 # /file csnd_snP2.py
 # CSound Scale Notes Generator Program

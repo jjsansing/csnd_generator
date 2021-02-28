@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 #
 # \file csnd_genobjP2.py
 # CSound Score Generator classes
