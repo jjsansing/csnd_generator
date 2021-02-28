@@ -1,0 +1,40 @@
+# CSound generator default Note file
+#
+# File: sn_notes.15tone
+#
+# Note definitions have the following fields:
+#
+#   name
+#
+#   - name is created with 2 characters as follows:
+#     - note: A - Z and a - z case sensitive
+#     - modifiers: Blank, 0 - 9, A - Z, or a - z
+#
+# The notes must be in the correct sequence for scales to be produced
+# accurately.
+#
+#  |  ::  |  ::   ::  |  ::   ::   ::  |   ::   ::|  ← Black keys
+#  |  ||  |  ||   ||  |  ||   ||   ||  |   ||   |||  ← White keys
+#  |A As B|C Cs D Ds E|F Fs G Gs H Hs I| J Js K Ks|
+
+
+NOTE A
+NOTE As
+NOTE B
+NOTE C
+NOTE Cs
+NOTE D
+NOTE Ds
+NOTE E
+NOTE F
+NOTE Fs
+NOTE G
+NOTE Gs
+NOTE H
+NOTE Hs
+NOTE I
+NOTE J
+NOTE Js
+NOTE K
+NOTE Ks
+

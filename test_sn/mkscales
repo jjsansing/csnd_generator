@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# Generate a score file and use it to create a wav file
+#
+
+export SSDIR=/home/jim/data/music/csound/sounds/drumkit/
+
+SN_PGM=../csnd_sn
+CSG_PGM=../csnd_gen
+#SN_PGM=../src/csnd_snP2.py
+#CSG_PGM=../src/csnd_genP2.py
+#SN_PGM=../src/csnd_snP3.py
+#CSG_PGM=../src/csnd_genP3.py
+
+FILES=`ls scales`
+if [ "$FILES" != "" ]; then
+    rm scales/*
+fi
+
+SCO=csg.sco
+$SN_PGM -s sn_scale.19tone9note -n sn_notes.19tone -i5 -l9 -x"hh" -x"ww" -x"mm" -x"MM" -x"ff" -x"hwh" -x"hmh" -v scales/csg_staves -m10 -d2
+
+STAVES=`ls scales/csg_staves.*`
+for staff in $STAVES; do
+    $CSG_PGM -n ../test_gen/csg_notes.19tone -t ../test_gen/csg_tmplt -v $staff -s $SCO
+    RC=$?
+    if [ $RC != 0 ]; then
+        echo "Error in csnd_gen"
+        exit 1
+    fi
+    csound --wave --output=$staff.wav ../test_gen/csg.orc $SCO
+done
+
+

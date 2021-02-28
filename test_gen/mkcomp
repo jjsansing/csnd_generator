@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Generate a score file and use it to create a wav file
+#
+
+export SSDIR=./sounds/
+
+#PGM=../csnd_gen
+PGM=../src/csnd_genP2.py
+#PGM=../src/csnd_genP3.py
+
+SCO=csg.sco
+WAVE=csg.wav
+STAFF=csg_staves
+
+if [ "$1" != "" ]; then
+    SCO=csg_$1.sco
+    WAVE=csg_$1.wav
+    STAFF=csg_staves.$1
+fi
+
+$PGM -n csg_notes.sounds -n csg_notes.15tone -v $STAFF -s $SCO
+
+RC=$?
+if [ $RC != 0 ]; then
+    echo "Error in csnd_gen"
+    exit 1
+fi
+
+csound --wave --output=$WAVE csg.orc $SCO
+
+

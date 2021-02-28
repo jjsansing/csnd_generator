@@ -1,0 +1,103 @@
+# CSound generator default scale template file
+#
+# File: sn_scale.15tone7note
+#
+# This is similar to a staves files, except that the notes are represented 
+# by octave and position in the scale.  This means that if the tuning is
+# 19 tones and the scale is 9 notes, then the notes positions are 0 - 8.
+#
+#
+
+STAFF M1_1
+INSTR 1
+FUND 2:0  0.0   0.4   9000
+FUND 2:1  0.12  0.4   9000
+FUND 2:2  0.25  0.4   9000
+FUND 2:3  0.37  0.4   9000
+FUND 2:4  0.5   0.4   9000
+FUND 2:5  0.62  0.4   9000
+FUND 2:6  0.75  0.4   9000
+FUND 2:7  0.87  0.4   8000
+FUND 2:8  1.0   0.4   8000
+FUND 3:0  1.12  0.4   8000
+FUND 3:1  1.25  0.4   8000
+FUND 3:2  1.37  0.4   8000
+FUND 3:3  1.5   0.4   8000
+FUND 3:4  1.62  0.4   8000
+FUND 3:5  1.75  0.4   7000
+FUND 3:6  1.87  0.4   7000
+FUND 3:7  2.0   0.4   7000
+FUND 3:8  2.12  0.4   7000
+FUND 4:0  2.25  0.4   7000
+FUND 4:1  2.37  0.4   7000
+FUND 4:2  2.5   0.4   7000
+FUND 4:3  2.62  0.4   7000
+FUND 4:4  2.75  0.4   7000
+FUND 4:5  2.87  0.4   7000
+FUND 4:6  3.0   0.4   7000
+FUND 4:7  3.12  0.4   7000
+FUND 4:8  3.25  0.4   7000
+FUND 5:0  3.37  0.4   7000
+# - - -
+FUND 2:0  4.0   0.4   6000
+FUND 2:1  4.12  0.4   6000
+FUND 2:2  4.25  0.4   6000
+FUND 2:3  4.37  0.4   6000
+FUND 2:4  4.5   0.4   6000
+FUND 2:5  4.62  0.4   6000
+FUND 2:6  4.75  0.4   6000
+FUND 2:7  5.0   0.4   6000
+FUND 2:8  5.12  0.4   6000
+FUND 3:0  5.25  0.4   6000
+FUND 3:1  5.37  0.4   6000
+FUND 3:2  5.5   0.4   6000
+FUND 3:3  5.62  0.4   6000
+FUND 3:4  5.75  0.4   6000
+FUND 3:5  5.87  0.4   6000
+FUND 3:6  6.0   0.4   6000
+FUND 3:7  6.12  0.4   6000
+FUND 3:8  6.25  0.4   6000
+FUND 4:0  6.37  0.4   6000
+# - - -
+FUND 2:2  4.0   0.4   6000
+FUND 2:3  4.12  0.4   6000
+FUND 2:4  4.25  0.4   6000
+FUND 2:5  4.37  0.4   6000
+FUND 2:6  4.5   0.4   6000
+FUND 2:7  4.62  0.4   6000
+FUND 2:8  4.75  0.4   6000
+FUND 3:0  5.0   0.4   6000
+FUND 3:1  5.12  0.4   6000
+FUND 3:2  5.25  0.4   6000
+FUND 3:3  5.37  0.4   6000
+FUND 3:4  5.5   0.4   6000
+FUND 3:5  5.62  0.4   6000
+FUND 3:6  5.75  0.4   6000
+FUND 3:7  5.87  0.4   6000
+FUND 3:8  6.0   0.4   6000
+FUND 4:0  6.12  0.4   6000
+FUND 4:1  6.25  0.4   6000
+FUND 4:2  6.37  0.4   6000
+# - - -
+FUND 2:4  4.0   0.4   6000
+FUND 2:5  4.12  0.4   6000
+FUND 2:6  4.25  0.4   6000
+FUND 2:7  4.37  0.4   6000
+FUND 2:8  4.5   0.4   6000
+FUND 3:0  4.62  0.4   6000
+FUND 3:1  4.75  0.4   6000
+FUND 3:2  5.0   0.4   6000
+FUND 3:3  5.12  0.4   6000
+FUND 3:4  5.25  0.4   6000
+FUND 3:5  5.37  0.4   6000
+FUND 3:6  5.5   0.4   6000
+FUND 3:7  5.62  0.4   6000
+FUND 3:8  5.75  0.4   6000
+FUND 4:0  5.87  0.4   6000
+FUND 4:1  6.0   0.4   6000
+FUND 4:2  6.12  0.4   6000
+FUND 4:3  6.25  0.4   6000
+FUND 4:4  6.37  0.4   6000
+
+NEXT 6.0
+

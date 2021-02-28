@@ -1,0 +1,74 @@
+CSound Generator Notes
+
+Building CSG:
+
+In Linux, the following make arguments are supported:
+
+  <blank>/all:  This will build both programs in the local directory
+  csnd_gen: Build the csnd_gen program in the local directory
+  csnd_sn: Build the csnd_sn program in the local directory
+  clean: Delete both programs and any object files in the local directory
+
+    Note: The following can only be run by superuser
+  install:  Install the program in /usr/bin
+  clean_install:  Uninstall the program from /usr/bin
+
+On other platforms, you're on your own with the C compiler.  However there are ports to
+both Python2 and Python3.  They run a bit slower, but typically this is only fractions of
+a second slower.
+
+
+Running CSG:
+
+Again on Linux, run the following command:
+
+  csnd_gen -n csg_notes.12tone -s csg12tone.sco
+
+If running python the equivalent is:
+
+  csnd_genP2.py -n csg_notes.12tone -s csg12tone.sco
+  csnd_genP3.py -n csg_notes.12tone -s csg12tone.sco
+
+This will default to the csg_tmplt and csg_chords file.  The command line
+arguments will override the default csg_notes and csg.sco files.
+
+To get debug into, use '-d debug_code' where Note = 1, Template = 2, Chord = 4.
+These values can be ORed for multiple data structures.
+
+For a list of command line arguments, run:
+
+  csnd_gen -h
+  csnd_genP2.py -h
+  csnd_genP3.py -h
+
+The zip file includes 3 wav files as examples of what can be created using
+CSound Generator to create the input to CSound.
+
+
+On Linux, to create a CSound wav file, run the following command:
+
+   csound --wave --output=audio/csg.wav csg.orc csg12tone.sco 
+
+
+Test files:
+
+The files included in the test directory provide fairly broad examples which can be
+used as starting points for creating original scores.  For UNIX based systems, there
+are the shell scripts, mkcomp and mkscales, which will generate all required files and
+result in one or more wav files.
+
+Simple cd to the test directory and run the shell script:
+
+  ./mkcomp
+  ./mkscales
+
+The configuration files provided for the csnd_gen test create a wav file that starts
+with a simple sine wave playing a short melody.  This is modified to an instrument
+with multiple sine wave harmonics.  Then more complex instruments are added each time
+the melody is played.  The last several examples demonstrate wave modulation
+techniques available in CSound, including vowel sounds.
+
+The command for the csnd_sn test create 10 scales within a 19 tone tuning and the
+corresponding wav files for them.
+
+

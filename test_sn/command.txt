@@ -1,0 +1,3 @@
+./csnd_scale_notes -e sn_scale.19tone9note -n sn_notes.19tone -i5 -s9 -x"hh" -x"ww" -x"mm" -x"MM" -x"ff" -x"hwh" -x"hmh" -d2
+
+
