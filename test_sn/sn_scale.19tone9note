@@ -1,6 +1,6 @@
 # CSound generator default scale template file
 #
-# File: sn_scale.15tone7note
+# File: sn_scale.19tone9note
 #
 # This is similar to a staves files, except that the notes are represented 
 # by octave and position in the scale.  This means that if the tuning is
@@ -99,5 +99,5 @@ FUND 4:2  6.12  0.4   6000
 FUND 4:3  6.25  0.4   6000
 FUND 4:4  6.37  0.4   6000
 
-NEXT 6.0
+NEXT 8.0
 

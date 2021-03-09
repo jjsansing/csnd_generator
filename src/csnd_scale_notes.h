@@ -126,7 +126,10 @@ typedef struct _snScale {
 
 typedef struct _snStaffNote {
     struct _snStaffNote *next;
-    char                 line[NAME_MAX]; /**< Note definition */
+    char                 line[SN_MAX_LINE]; /**< Note definition */
+    unsigned int         flag;
+#define SIMP_COMMENT     0x0001         /**< Simple comment */
+#define MOD_COMMENT      0x0002         /**< Modifiable comment */
 } snStaffNote;
 
 /**
@@ -155,6 +158,19 @@ typedef struct _snPattern {
     char               pat[MAX_SCALE_LEN];  /**< Pattern: freeform */
 } snPattern;
 
+/**
+ * Structure:
+ *   snHeader
+ * 
+ * Description:
+ *   This is a list of comments at the beginning of the staff template file.
+ */
+
+typedef struct _snHeader {
+    struct _snHeader    *next;
+    char                 line[SN_MAX_LINE]; /**< Header comment */
+} snHeader;
+
 
 /**
  * Structure:
@@ -174,6 +190,8 @@ typedef struct _snMain {
     snPattern           *xpat;          /**< Exclude pattern (-x"hhh") */
     snScale             *scales;        /**< Scale list */
     snScale             *stail;         /**< End of scale list */
+    snHeader            *headers;       /**< Header comment list */
+    snHeader            *htail;         /**< End of header comment list */
     snStaff             *staffs;        /**< Staff list */
     snStaff             *ctail;         /**< End of staff list */
 } snMain;

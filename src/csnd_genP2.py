@@ -500,13 +500,16 @@ Outputs:
             cidx = staffs.index(ch)
             chnew = staffs.pop(cidx)
             max = len(staffs)
-            while (cidx < max):
-                if (cidx == (max - 1)):
-                    staffs.append(chnew)
-                elif (staffs[cidx].notes[0][1] > chnew.notes[0][1]):
-                    staffs.insert(cidx, chnew)
-                    break
-                cidx += 1
+            if (cidx >= max):
+                staffs.append(chnew)
+            else:
+                while (cidx < max):
+                    if (cidx == (max - 1)):
+                        staffs.append(chnew)
+                    elif (staffs[cidx].notes[0][1] > chnew.notes[0][1]):
+                        staffs.insert(cidx, chnew)
+                        break
+                    cidx += 1
         else:
             idx += 1
 
