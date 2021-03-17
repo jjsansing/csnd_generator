@@ -1,3 +1,7 @@
-./csnd_scale_notes -e sn_scale.19tone9note -n sn_notes.19tone -i5 -s9 -x"hh" -x"ww" -x"mm" -x"MM" -x"ff" -x"hwh" -x"hmh" -d2
+The following command is an example of how to use exclude parameters to limit the
+number of scales generated.  Note the -k parameter skips the creation of csg_staves
+files.
+
+csnd_sn -s sn_scale.19tone9note -n sn_notes.19tone -i5 -l9 -x"hh" -x"ww" -x"mm" -x"MM" -x"ff" -x"hwh" -x"hmh" -d2 -k
 
 
