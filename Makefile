@@ -68,6 +68,7 @@ install: $(CSG_PROGRAM) $(SN_PROGRAM)
 	ln -s /usr/bin/csnd_gen-$(VER) /usr/bin/csnd_gen
 	cp csnd_sn /usr/bin/csnd_sn-$(VER)
 	ln -s /usr/bin/csnd_sn-$(VER) /usr/bin/csnd_sn
+	cp src/csnd*.py /usr/bin/.
 	@if [ -d /usr/share/man ]; then\
 		cp csnd_gen.8.gz csnd_sn.8.gz /usr/share/man/man8/. ;\
 	fi
@@ -78,6 +79,7 @@ clean_install:
 	fi
 	rm /usr/bin/csnd_gen /usr/bin/csnd_gen-$(VER)
 	rm /usr/bin/csnd_sn /usr/bin/csnd_sn-$(VER)
+	rm /usr/bin/csnd_*.py
 	@if [ -f /usr/share/man/man8/csnd_gen.8.gz ]; then\
 		rm /usr/share/man/man8/csnd_gen.8.gz /usr/share/man/man8/csnd_sn.8.gz ;\
 	fi
