@@ -170,12 +170,9 @@ Outputs:
     # Get variables: tuning_size, scale_len, max_interval
     # Find first scale: array[scale_len] = {1,1,1,...}
     scale_arr = array.array('B')
-    scale_arr2 = array.array('B')
     idx = 0
     while (idx < sn_scale_len):
         scale_arr.append(1)
-        scale_arr2.append(1)
-        scale_arr2.append(1)
         idx += 1
 
     # Add all intervals, (if = tuning_size) test for dupes, (if unique) keep
@@ -189,6 +186,7 @@ Outputs:
     print("Get unique scales: ",)
     while (done == 0):
         scale_steps = ""
+        scale_dupe = ""
         if ((loopcnt & 0xfff) == 0):
             print(".", end="", flush=True)
             sys.stdout.flush()
@@ -206,11 +204,10 @@ Outputs:
             idx = 0
             ss1 = ""
             while (idx < sn_scale_len):
-                scale_arr2[idx] = scale_arr[idx]
-                scale_arr2[idx + sn_scale_len] = scale_arr[idx]
                 ss1 += sn_intervals[scale_arr[idx]]
                 idx += 1
-            scale_steps = ss1 + ss1
+            scale_steps = ss1
+            scale_dupe = ss1 + ss1
             # Test for exclude patterns */
             if (xpat != []):
                 idx = 0
@@ -223,7 +220,7 @@ Outputs:
                 dscale = ""
                 idx = 0
                 while (idx < 2 *sn_scale_len):
-                    dscale += scale_steps[idx]
+                    dscale += scale_dupe[idx]
                     idx += 1
                 if (scales.find_dupe(dscale) == 1):
                     unique = 0
@@ -235,11 +232,11 @@ Outputs:
                     idx = 0
                     while (idx < sn_scale_len):
                         if (first_time == 1):
-                            newscale.append(scale_steps[idx])
+                            newscale.append(scale_dupe[idx])
                             newidx.append(jdx)
                         else:
                             newidx[idx] = jdx
-                            newscale[idx] = scale_steps[idx]
+                            newscale[idx] = scale_dupe[idx]
                         jdx += scale_arr[idx]
                         idx += 1
                     first_time = 0

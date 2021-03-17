@@ -170,15 +170,14 @@ Outputs:
     # Get variables: tuning_size, scale_len, max_interval
     # Find first scale: array[scale_len] = {1,1,1,...}
     scale_arr = array.array('B')
-    scale_arr2 = array.array('B')
     scale_steps = array.array('c')
+    scale_dupe = array.array('c')
     idx = 0
     while (idx < sn_scale_len):
         scale_arr.append(1)
-        scale_arr2.append(1)
-        scale_arr2.append(1)
         scale_steps.append('a')
-        scale_steps.append('a')
+        scale_dupe.append('a')
+        scale_dupe.append('a')
         idx += 1
 
     # Add all intervals, (if = tuning_size) test for dupes, (if unique) keep
@@ -207,10 +206,7 @@ Outputs:
             # different points in the scale
             idx = 0
             while (idx < sn_scale_len):
-                scale_arr2[idx] = scale_arr[idx]
-                scale_arr2[idx + sn_scale_len] = scale_arr[idx]
                 scale_steps[idx] = sn_intervals[scale_arr[idx]]
-                scale_steps[idx + sn_scale_len] = scale_steps[idx]
                 idx += 1
             # Test for exclude patterns */
             if (xpat != []):
@@ -219,12 +215,16 @@ Outputs:
                     if (str(pat) in str(scale_steps)):
                         unique = 0
                         break
+            while (idx < sn_scale_len):
+                scale_dupe[idx] = scale_steps[idx]
+                scale_dupe[idx + sn_scale_len] = scale_steps[idx]
+                idx += 1
             # Test for duplicates */
             if (unique == 1):
                 dscale = ""
                 idx = 0
                 while (idx < 2 *sn_scale_len):
-                    dscale += scale_steps[idx]
+                    dscale += scale_dupe[idx]
                     idx += 1
                 if (scales.find_dupe(dscale) == 1):
                     unique = 0
