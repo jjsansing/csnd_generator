@@ -65,15 +65,15 @@ while ((line[idx] != ' ' && line[idx] != '\t') && idx < linemax) \
 while ((line[idx] == ' ' || line[idx] == '\t') && idx < linemax) \
     idx++;
 
-#define CFILE_ERROR(fd, errdata, label) \
+#define CFILE_ERROR(fd, errdata, filenm, label) \
 if (feof(fd)) \
 { \
-    printf("Warning: did not write errdata to score\n"); \
+    printf("Warning: did not write %s to %s\n", errdata, filenm); \
     return 0; \
 } \
 else if (ferror(fd)) \
 { \
-    printf("Error: failed to write errdata to score\n  %s\n", strerror(errno)); \
+    printf("Error: failed to write %s to %s\n  %s\n", errdata, filenm, strerror(errno)); \
     goto label; \
 }
 

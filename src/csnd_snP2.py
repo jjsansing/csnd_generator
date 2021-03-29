@@ -80,7 +80,9 @@ sn_scale_len = 7
 scalesz = 0
 sn_tuning_size = 0
 
+sn_os_win = 0
 sn_intervals = " hwmMfdFasASjenNtTvVlLrRoO"
+sn_Wintervals = " ABCDEFGHIJKLMNOPQRSTUVWXY"
 
 #
 # FUNCTIONS
@@ -96,6 +98,58 @@ def dev_help():
     print(create_stafffile.__doc__)
     print(usage.__doc__)
     print(main.__doc__)
+
+
+def test_os():
+    """
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Function: test_os
+
+Description:
+  This is a utility function to check for mixed case file name support.
+  If it does not, then the step letters are simply A - X.
+Inputs:
+  - None
+Outputs:
+  - int: Status
+    - 0 = OK
+    - <0 = Error
+   """
+
+    global sn_os_win
+    global sn_intervals
+
+    try:
+        tfd = open("test.a", 'w')
+    except IOError as e:
+        print "Error failed to open test.a first time"
+        print "  ", e
+        return -1
+    tfd.write("Test 1")
+    tfd.close()
+
+    try:
+        tfd = open("test.A", 'w')
+    except IOError as e:
+        print "Error failed to open test.a first time"
+        print "  ", e
+        return -1
+    tfd.write("Test 2")
+    tfd.close()
+
+    try:
+        tfd = open("test.a", 'r')
+    except IOError as e:
+        print "Error failed to open test.a second time"
+        print "  ", e
+        return -1
+    line = tfd.readline()
+    tfd.close()
+    if (line != "Test 1"):
+        sn_os_win = 1
+        sn_intervals = sn_Wintervals
+
+    return 0
 
 
 def parse_notes():
@@ -513,7 +567,10 @@ Outputs:
     print '  -m: number: Maximum number of scales to generate'
     print '      Default: all, maximum : ', sn_max_scales
     print '  -x: string: Step pattern to exclude may be entered multiple times'
-    print '      Examples: -x\"hhh\" -x\"whw\"'
+    if (sn_os_win == 0):
+        print '      Examples: -x\"hhh\" -x\"whw\"'
+    else:
+        print '      Examples: -x\"AAA\" -x\"BAB\"'
     print '  -g: number: Number of scales to group in a staves file'
     print '      Default: 1'
     print '  -k: Skip staff file generation'
@@ -523,14 +580,25 @@ Outputs:
     print '  Note: Patterns are tested in the order entered, so it is more'
     print '        efficient to enter frequently used patterns first'
     print '\n'
-    print '  NOTE: Scale names are the list of intervals where:'
-    print '    h = half tone, w = whole tone, m = minor 3rd, M = major 3rd, f = fourth,'
-    print '    d = diminished fifth, F = fifth, a = augmented fifth, s = sixth,'
-    print '    A = augmented sixth, S = seventh, j = major seventh, e = eighth,'
-    print '    n = diminished ninth, N = ninth, t = diminished tenth, T = tenth,'
-    print '    v = diminished eleventh, V = eleventh, l = diminished twelfth, L = twelfth,'
-    print '    r = diminished thirteenth, R = thirteenth, o = diminished fourteenth, O = fourteenth'
-    print '    Example: csg_staves.whMhmww'
+    if (sn_os_win == 0):
+        print '  NOTE: Scale names are the list of intervals where:'
+        print '    h = half tone, w = whole tone, m = minor 3rd, M = major 3rd, f = fourth,'
+        print '    d = diminished fifth, F = fifth, a = augmented fifth, s = sixth,'
+        print '    A = augmented sixth, S = seventh, j = major seventh, e = eighth,'
+        print '    n = diminished ninth, N = ninth, t = diminished tenth, T = tenth,'
+        print '    v = diminished eleventh, V = eleventh, l = diminished twelfth, L = twelfth,'
+        print '    r = diminished thirteenth, R = thirteenth, o = diminished fourteenth, O = fourteenth'
+        print '    Example: csg_staves.whMhmww'
+    else:
+        print '  NOTE: Scale names are the list of intervals where:'
+        print '    A = half tone, B = whole tone, C = minor 3rd, D = major 3rd, E = fourth,'
+        print '    F = diminished fifth, G = fifth, H = augmented fifth, I = sixth,'
+        print '    J = augmented sixth, K = seventh, L = major seventh, M = eighth,'
+        print '    N = diminished ninth, O = ninth, P = diminished tenth, Q = tenth,'
+        print '    R = diminished eleventh, S = eleventh, T = diminished twelfth, U = twelfth,'
+        print '    V = diminished thirteenth, W = thirteenth, X = diminished fourteenth, Y = fourteenth'
+        print '    Example: csg_staves.BADACBB'
+        print '  NOTE: This OS does not support mixed case file names'
 
     print '\n'
     sys.exit(0)
@@ -553,6 +621,9 @@ Outputs:
     """
 
 if __name__ == '__main__':
+
+    if (test_os() != 0):
+        sys.exit(1)
 
     try:
         opts, args = getopt.gnu_getopt (sys.argv[1:], 'd:Ds:n:v:f:g:i:km:l:x:')
