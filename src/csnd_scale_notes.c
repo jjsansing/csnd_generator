@@ -131,8 +131,8 @@ char * sn_alloc(int datasz, char *dmsg)
 int sn_test_os(void)
 {
     FILE *tfd = NULL;
-    char test1[8] = "Test 1\n"
-    char test2[8] = "Test 2\n"
+    char test1[8] = "Test 1\n";
+    char test2[8] = "Test 2\n";
     char line[16];
 
     if ((tfd = fopen("test.a", "w")) == NULL)
@@ -899,7 +899,7 @@ int modify_staffnote(char *line, snScale *scale)
 {
     int i = 0, ci, idx;
     double dnum;
-    char note_name[4], stime[32], gline[SN_MAX_LINE];
+    char note_name[6], stime[32], gline[SN_MAX_LINE];
 
     if (strncmp(line, "FUND", 4) != 0)
     {
@@ -910,8 +910,8 @@ int modify_staffnote(char *line, snScale *scale)
     /* Get note name */
     i = 4;
     SKIP_SPACE(line, i, SN_MAX_LINE)
-    strncpy(note_name, &line[i], 3);
-    note_name[3] = '\0';
+    strncpy(note_name, &line[i], 4);
+    note_name[4] = '\0';
     if (!(note_name[0] >= '0' && note_name[0] <= '9'))
     {
         printf("Error: invalid note octave: %s", line);
@@ -924,9 +924,11 @@ int modify_staffnote(char *line, snScale *scale)
     }
     if ((dnum = sn_getnum(&note_name[2])) == DBL_ERROR)
         goto pcn_error;
+printf("DEBUG: Getnum %s Result %2f\n", &note_name[2], dnum);
     idx = (int) dnum;
     ci = (int) scale->idx[idx];
     strcpy(note_name, anchor->narray[ci].name);
+printf("DEBUG: Note num '%d' Note name %s\n", idx, note_name);
     i++;
     for (idx = 0; idx < 3; idx++)
         line[i+idx] = ' ';
@@ -1114,7 +1116,7 @@ int add_exclude(char *pat)
     i = strlen(pat);
     if ((i + 1) > MAX_SCALE_LEN)
     {
-        printf("DEBUG: Pattern too long '%s'\n", pat);
+        printf("Pattern too long '%s'\n", pat);
         goto ae_error;
     }
     if ((tpat = (snPattern *) sn_alloc(sizeof(snPattern), "exclude pattern")) == NULL)
@@ -1176,7 +1178,6 @@ int main (int argc, char *argv[])
     strcpy(vfile, DFLT_STAFF_FILE);
     strcpy(nfile, DFLT_NOTE_FILE);
     strcpy(sfile, DFLT_SCALE_FILE);
-printf ("DEBUG: Parse args\n");
     if (argc > 1)
     {
         // Parse command line arguments
