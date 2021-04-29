@@ -924,11 +924,9 @@ int modify_staffnote(char *line, snScale *scale)
     }
     if ((dnum = sn_getnum(&note_name[2])) == DBL_ERROR)
         goto pcn_error;
-printf("DEBUG: Getnum %s Result %2f\n", &note_name[2], dnum);
     idx = (int) dnum;
     ci = (int) scale->idx[idx];
     strcpy(note_name, anchor->narray[ci].name);
-printf("DEBUG: Note num '%d' Note name %s\n", idx, note_name);
     i++;
     for (idx = 0; idx < 3; idx++)
         line[i+idx] = ' ';
