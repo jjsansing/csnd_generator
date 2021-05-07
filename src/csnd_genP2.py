@@ -431,7 +431,9 @@ Outputs:
                 if (ch.instr.SCALEHARM == 1):
                     x = int(ntdef[2]) + int(gt[f])
                     if (x < notes.notesz):
-                        freq = notes.notes[x][1]
+                        freq = notes.freqs[x][1]
+                    else:
+                        vol = 0.01
                 else:
                     if (gt[F] == 1):
                         freq = float(gt[f])
@@ -449,7 +451,9 @@ Outputs:
                 if (ch.instr.SCALEHARM == 1):
                     x = int(ntdef[2]) + int(st[f])
                     if (x < notes.notesz):
-                        freq = notes.notes[x][1]
+                        freq = notes.freqs[x][1]
+                    else:
+                        vol = 0.01
                 else:
                     if (st[F] == 1):
                         freq = float(st[f])
