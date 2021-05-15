@@ -346,7 +346,11 @@ Outputs:
                 vfd.close()
                 return -1
             fd = line.split()
-            fdt = (fd[1], float(fd[2]), float(fd[3]), int(fd[4]))
+            try:
+                fdt = (fd[1], float(fd[2]), float(fd[3]), int(fd[4]))
+            except:
+                print("Error in line:\n  ", line)
+                return -1
             staff.add_fund(fdt)
 
         elif (cd[0] == "VFUND"):
